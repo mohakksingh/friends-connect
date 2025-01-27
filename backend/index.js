@@ -3,6 +3,8 @@ const express=require('express');
 const mongoose=require('mongoose');
 const cors=require('cors')
 const authRoutes=require('./routes/auth')
+const friendRoutes=require('./routes/friends')
+const userRoutes=require('./routes/users')
 
 const app=express();
 
@@ -18,6 +20,9 @@ mongoose.connect(process.env.MONGODB_URI)
 })
 
 app.use('/api/auth',authRoutes);
+app.use('/api/users',userRoutes);
+app.use('/api/friends', friendRoutes);
+
 
 const PORT=process.env.PORT || 3000;
 
