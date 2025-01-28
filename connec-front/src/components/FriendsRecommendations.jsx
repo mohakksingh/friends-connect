@@ -13,7 +13,7 @@ const FriendRecommendations = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          'http://localhost:3000/api/friends/recommendations',
+          `${import.meta.env.BASE_URL}/api/friends/recommendations`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }

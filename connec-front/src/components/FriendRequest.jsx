@@ -17,7 +17,7 @@ const FriendRequests = () => {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        "http://localhost:3000/api/friends/requests",
+        `${import.meta.env.BASE_URL}/api/friends/requests`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -36,7 +36,7 @@ const FriendRequests = () => {
       setError(null); 
 
       await axios.put(
-        `http://localhost:3000/api/friends/${action}/${requestId}`,
+        `${import.meta.env.BASE_URL}/api/friends/${action}/${requestId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -15,7 +15,7 @@ const UserList = ({ searchTerm }) => {
         setLoading(true);
         setError(null);
         const response = await axios.get(
-          `http://localhost:3000/api/users/search?term=${searchTerm}`,
+          `${import.meta.env.BASE_URL}/api/users/search?term=${searchTerm}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

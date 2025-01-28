@@ -22,7 +22,7 @@ const Friends = () => {
     try {
       setLoading(true)
       setError(null)
-      const response = await axios.get("http://localhost:3000/api/friends/myfriends", {
+      const response = await axios.get(`${import.meta.env.BASE_URL}/api/friends/myfriends`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       setFriends(response.data)
