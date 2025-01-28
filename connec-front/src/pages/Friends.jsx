@@ -42,7 +42,7 @@ const Friends = () => {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/friends/myfriends`,
+        `${import.meta.env.VITE_API_URL}/api/friends/myfriends`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

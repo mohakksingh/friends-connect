@@ -15,9 +15,7 @@ const UserList = ({ searchTerm }) => {
         setLoading(true);
         setError(null);
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_BACKEND_URL
-          }/api/users/search?term=${searchTerm}`,
+          `${import.meta.env.VITE_API_URL}/api/users/search?term=${searchTerm}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
