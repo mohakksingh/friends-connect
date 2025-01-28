@@ -17,12 +17,12 @@ const FriendRequests = () => {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        `${import.meta.env.BASE_URL}/api/friends/requests`,
+        `${import.meta.env.BACKEND_URL}/api/friends/requests`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setRequests(response.data); 
+      setRequests(response.data);
     } catch (err) {
       console.error("Error fetching friend requests:", err);
       setError("Failed to fetch friend requests. Please try again.");
@@ -33,10 +33,10 @@ const FriendRequests = () => {
 
   const handleRequest = async (requestId, action) => {
     try {
-      setError(null); 
+      setError(null);
 
       await axios.put(
-        `${import.meta.env.BASE_URL}/api/friends/${action}/${requestId}`,
+        `${import.meta.env.BACKEND_URL}/api/friends/${action}/${requestId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

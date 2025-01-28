@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import UserCard from './UserCard';
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import UserCard from "./UserCard";
 
 const FriendRecommendations = () => {
   const [recommendations, setRecommendations] = useState([]);
@@ -13,14 +13,14 @@ const FriendRecommendations = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `${import.meta.env.BASE_URL}/api/friends/recommendations`,
+          `${import.meta.env.BACKEND_URL}/api/friends/recommendations`,
           {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         setRecommendations(response.data);
       } catch (error) {
-        console.error('Error fetching recommendations:', error);
+        console.error("Error fetching recommendations:", error);
       } finally {
         setLoading(false);
       }
@@ -39,7 +39,10 @@ const FriendRecommendations = () => {
       ) : (
         <div className="space-y-4">
           {recommendations.map((rec) => (
-            <div key={rec.user.id} className="border-b border-gray-200 pb-4 last:border-0">
+            <div
+              key={rec.user.id}
+              className="border-b border-gray-200 pb-4 last:border-0"
+            >
               <UserCard user={rec.user} />
               <p className="text-sm text-gray-600 mt-2">
                 {rec.mutualFriendsCount} mutual friends

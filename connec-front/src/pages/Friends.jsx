@@ -1,48 +1,70 @@
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import axios from "axios"
-import { UserCircle2, Users, Loader2, AlertCircle, Mail, MessageCircle, MoreVertical } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import {
+  UserCircle2,
+  Users,
+  Loader2,
+  AlertCircle,
+  Mail,
+  MessageCircle,
+  MoreVertical,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 const Friends = () => {
-  const [friends, setFriends] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const token = useSelector((state) => state.auth.token)
+  const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    fetchFriends()
-  }, [])
+    fetchFriends();
+  }, []);
 
   const fetchFriends = async () => {
     try {
-      setLoading(true)
-      setError(null)
-      const response = await axios.get(`${import.meta.env.BASE_URL}/api/friends/myfriends`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      setFriends(response.data)
+      setLoading(true);
+      setError(null);
+      const response = await axios.get(
+        `${import.meta.env.BACKEND_URL}/api/friends/myfriends`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setFriends(response.data);
     } catch (err) {
-      console.error("Error fetching friend list:", err)
-      setError("Failed to fetch friends. Please try again.")
+      console.error("Error fetching friend list:", err);
+      setError("Failed to fetch friends. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const handleRoute=()=>{
-    navigate('/')
-  }
+  const handleRoute = () => {
+    navigate("/");
+  };
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
-    )
+    );
   }
 
   return (
@@ -56,10 +78,13 @@ const Friends = () => {
                 Friend List
               </CardTitle>
               <CardDescription>
-                {friends.length} {friends.length === 1 ? "friend" : "friends"} in your network
+                {friends.length} {friends.length === 1 ? "friend" : "friends"}{" "}
+                in your network
               </CardDescription>
             </div>
-            <Button variant="outline" onclick={handleRoute} >Find New Friends</Button>
+            <Button variant="outline" onclick={handleRoute}>
+              Find New Friends
+            </Button>
           </div>
         </CardHeader>
         <CardContent>
@@ -73,9 +98,13 @@ const Friends = () => {
           {friends.length === 0 ? (
             <div className="text-center py-12 px-4">
               <UserCircle2 className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-1">No friends yet</h3>
-              <p className="text-gray-500 mb-4">Start connecting with people to build your network</p>
-              
+              <h3 className="text-lg font-medium text-gray-900 mb-1">
+                No friends yet
+              </h3>
+              <p className="text-gray-500 mb-4">
+                Start connecting with people to build your network
+              </p>
+
               <Button variant="outline">Find Friends</Button>
             </div>
           ) : (
@@ -100,7 +129,6 @@ const Friends = () => {
                       </div>
                     </div>
                   </div>
-                  
                 </div>
               ))}
             </div>
@@ -108,8 +136,7 @@ const Friends = () => {
         </CardContent>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Friends
-
+export default Friends;
