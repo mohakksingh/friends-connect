@@ -84,10 +84,7 @@ const Login = () => {
                 <Label htmlFor="remember" className="text-sm">
                   Remember me
                 </Label>
-              </div>
-              <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">
-                Forgot password?
-              </a>
+              </div>       
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? (
