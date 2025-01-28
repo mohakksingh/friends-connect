@@ -17,6 +17,7 @@ import FriendRequests from "./components/FriendRequest";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Friends from "./pages/Friends";
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <FriendRequests />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/friends"
+                element={
+                  <PrivateRoute>
+                    <Friends />
                   </PrivateRoute>
                 }
               />
