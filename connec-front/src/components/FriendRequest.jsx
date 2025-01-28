@@ -17,7 +17,7 @@ const FriendRequests = () => {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        `${import.meta.env.BACKEND_URL}/api/friends/requests`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/friends/requests`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -36,7 +36,9 @@ const FriendRequests = () => {
       setError(null);
 
       await axios.put(
-        `${import.meta.env.BACKEND_URL}/api/friends/${action}/${requestId}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/friends/${action}/${requestId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -19,7 +19,7 @@ const UserCard = ({ user }) => {
   const checkFriendStatus = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.BACKEND_URL}/api/friends/status/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/friends/status/${user.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -34,7 +34,7 @@ const UserCard = ({ user }) => {
     try {
       setLoading(true);
       await axios.post(
-        `${import.meta.env.BACKEND_URL}/api/friends/request/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/friends/request/${user.id}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
