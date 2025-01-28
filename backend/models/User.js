@@ -23,11 +23,11 @@ const userSchema=new mongoose.Schema({
     }],
     pendingFriendRequests:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'FriendRequest'
     }],
     sentFriendRequests:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'FriendRequest'
     }],
     interests:[{
         type:String,
