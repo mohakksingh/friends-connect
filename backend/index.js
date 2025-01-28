@@ -9,7 +9,7 @@ const userRoutes=require('./routes/users')
 const app=express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     allowedHeaders: "Content-Type,Authorization", 
 }));
 

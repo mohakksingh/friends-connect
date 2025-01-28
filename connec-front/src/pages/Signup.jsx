@@ -1,16 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { register, clearError } from "../store/authSlice"
-import { UserPlus } from "lucide-react"
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register, clearError } from "../store/authSlice";
+import { UserPlus } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,40 +25,44 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-  })
-  const [passwordError, setPasswordError] = useState("")
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { loading, error } = useSelector((state) => state.auth)
+  });
+  const [passwordError, setPasswordError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setPasswordError("Passwords do not match")
-      return
+      setPasswordError("Passwords do not match");
+      return;
     }
-    const { confirmPassword, ...registrationData } = formData
-    const result = await dispatch(register(registrationData))
+    const { confirmPassword, ...registrationData } = formData;
+    const result = await dispatch(register(registrationData));
     if (!result.error) {
-      navigate("/")
+      navigate("/");
     }
-  }
+  };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-    if (error) dispatch(clearError())
-    if (passwordError) setPasswordError("")
-  }
+    });
+    if (error) dispatch(clearError());
+    if (passwordError) setPasswordError("");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
-          <CardDescription className="text-center">Enter your details to register for a new account</CardDescription>
+          <CardTitle className="text-2xl font-bold text-center">
+            Create an account
+          </CardTitle>
+          <CardDescription className="text-center">
+            Enter your details to register for a new account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           {(error || passwordError) && (
@@ -127,8 +138,7 @@ const Register = () => {
         </CardFooter>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Register
-
+export default Register;
