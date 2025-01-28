@@ -13,7 +13,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import { Provider } from "react-redux";
 import store from "./store";
-import Layout from "./components/Layout";
 import FriendRequests from "./components/FriendRequest";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Home from "./pages/Home";
@@ -24,8 +23,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <div >
-          {/* <Layout />
-           */}
           <Navbar />
           <div className="container mx-auto px-4 py-8">
             <Routes>
